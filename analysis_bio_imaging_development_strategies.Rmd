@@ -33,7 +33,41 @@ font-size: 1.2em;
 
 ------------------------------------------------------------------------
 
-🚧🚧 Under Construction 🚧🚧
+### In selecting a programming language for constructing a decision tree, I choose R due to its robust capabilities in statistical analysis and its widespread use in the field of bioinformatics.
+
+<br>
+
+#### Let's get down to the work, before we actually start writing the tree nodes to make a decision, let's break down the whole story and see what the bio-(this company) is facing. 
+
+```{r}
+# Install and load the necessary package
+if(!require(data.tree)) install.packages("data.tree")
+library(data.tree)
+
+# Define the tree structure
+bioImagingDecisionTree <- Node$new("Start")
+bioImagingDecisionTree$AddChild("Accept Medtech Offer")
+developmentNode <- bioImagingDecisionTree$AddChild("Decline Medtech Offer")
+
+successNode <- developmentNode$AddChild("Development Success")
+failureNode <- developmentNode$AddChild("Development Failure")
+
+successNode$AddChild("Apply for SBIR Grant")
+nugrowthNode <- successNode$AddChild("Accept Nugrowth Offer")
+
+nugrowthNode$AddChild("High Profit")
+nugrowthNode$AddChild("Medium Profit")
+nugrowthNode$AddChild("Low Profit")
+
+failureNode$AddChild("Abandon Project")
+failureNode$AddChild("Further Invest and Apply for SBIR Grant")
+
+# Print the structure
+print(bioImagingDecisionTree, "name")
+plot(bioImagingDecisionTree)
+
+
+```
 
 ------------------------------------------------------------------------
 
@@ -44,3 +78,5 @@ font-size: 1.2em;
 cat("Copyright © 2023-", format(Sys.Date(), "%Y"), "Sangho Lee, All rights reserved.")
 ```
 :::
+
+
