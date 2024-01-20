@@ -33,17 +33,38 @@ font-size: 1.2em;
 
 ------------------------------------------------------------------------
 
-### In selecting a programming language for constructing a decision tree, I choose R due to its robust capabilities in statistical analysis and its widespread use in the field of bioinformatics.
+### In selecting a programming language for constructing a decision tree, I choose R due to its robust capabilities in statistical analysis and its widespread use in the field of bioinformatics. I will use data.tree package to construct the decision tree unline the "Bill Sampras Summer Job" case which I used DiagreammeR package.
 
 <br>
 
-#### Let's get down to the work, before we actually start writing the tree nodes to make a decision, let's break down the whole story and see what the bio-(this company) is facing. 
+#### Let's get down to the work, before we actually start writing the tree nodes to make a decision, let's break down the whole story and see what the bio-(this company) is facing.
+
+- Start: Root of the decision tree.
+- Medtech Offer: Decide whether to accept Medtech's offer.
+- Accept Medtech Offer: Bio-Imaging accepts the offer, and the process ends with the guaranteed amount.
+- Decline Medtech Offer: Continue with the development to possibly get a better deal.
+Development Success: Determine if the three-dimensional software development is successful.
+Success: Successfully developed the 3D software.
+Failure: Failed to develop the 3D software.
+Funding Decision: If successful, decide the source of additional funding.
+SBIR Grant: Apply for the SBIR grant.
+Nugrowth Offer: Accept the Nugrowth Development offer.
+SBIR Outcome: The outcome of the SBIR grant application.
+Received: Grant is awarded.
+Not Received: Grant is not awarded.
+Market Success: The success of the product in the market.
+High Profit
+Medium Profit
+Low Profit
+
+
 
 ```{r}
-# Install and load the necessary package
-if(!require(data.tree)) install.packages("data.tree")
 library(data.tree)
 
+```
+
+```{r}
 # Define the tree structure
 bioImagingDecisionTree <- Node$new("Start")
 bioImagingDecisionTree$AddChild("Accept Medtech Offer")
@@ -78,5 +99,3 @@ plot(bioImagingDecisionTree)
 cat("Copyright © 2023-", format(Sys.Date(), "%Y"), "Sangho Lee, All rights reserved.")
 ```
 :::
-
-
