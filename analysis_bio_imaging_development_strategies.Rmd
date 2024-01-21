@@ -39,11 +39,18 @@ font-size: 1.2em;
 
 #### Let's get down to the work, before we actually start writing the tree nodes to make a decision, let's break down the whole story and see what the bio-(this company) is facing.
 
+##### Node 1: Start
 - Start: Root of the decision tree.
 - Medtech Offer: Decide whether to accept Medtech's offer.
+
+##### Node 2: Accept Medtech Offer
 - Accept Medtech Offer: Bio-Imaging accepts the offer, and the process ends with the guaranteed amount.
+
+##### Node 2: Decline Medtech Offer
 - Decline Medtech Offer: Continue with the development to possibly get a better deal.
-Development Success: Determine if the three-dimensional software development is successful.
+
+
+- Development Success: Determine if the three-dimensional software development is successful.
 Success: Successfully developed the 3D software.
 Failure: Failed to develop the 3D software.
 Funding Decision: If successful, decide the source of additional funding.
