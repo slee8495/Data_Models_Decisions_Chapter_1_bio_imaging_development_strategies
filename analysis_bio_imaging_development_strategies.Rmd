@@ -475,7 +475,7 @@ digraph BioImagingDecisionTree {
 
 ## <br>Conclusion
 
-### In this Bio-Imaging's strategic choices, we've navigated a complex landscape of options and outcomes using decision tree analysis. 
+### In this Bio-Imaging's strategic choices, we've navigated a complex landscape of options and outcomes using decision tree analysis.
 
 ### Here's what we found out:
 
