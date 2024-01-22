@@ -33,69 +33,463 @@ font-size: 1.2em;
 
 ------------------------------------------------------------------------
 
-### In selecting a programming language for constructing a decision tree, I choose R due to its robust capabilities in statistical analysis and its widespread use in the field of bioinformatics. I will use data.tree package to construct the decision tree unline the "Bill Sampras Summer Job" case which I used DiagreammeR package.
+### In selecting a programming language for constructing a decision tree, I choose R because of its robust capabilities in statistical analysis and its widespread use in the field of bioinformatics.
+
+#### <br> [I will use DiagrammeR package to construct the decision tree]{style="color:orange"}
+
+#### <br> I'll start by sketching out the entire narrative based on the summary page of our analysis. This will include incorporating the various scenarios proposed in the textbook. To ensure the plot is easy to grasp, I plan to first map out the overarching framework before delving into the specific possibilities associated with each node.
 
 <br>
 
-#### Let's get down to the work, before we actually start writing the tree nodes to make a decision, let's break down the whole story and see what the bio-(this company) is facing.
+### Outline of Nodes for Bio-Imaging's Decision Tree
 
-##### Node 1: Start
-- Start: Root of the decision tree.
-- Medtech Offer: Decide whether to accept Medtech's offer.
+#### Starting Off:
 
-##### Node 2: Accept Medtech Offer
-- Accept Medtech Offer: Bio-Imaging accepts the offer, and the process ends with the guaranteed amount.
+-   **Option 1: Take Medtech's \$150K:** Bag the cash and end the story.
 
-##### Node 2: Decline Medtech Offer
-- Decline Medtech Offer: Continue with the development to possibly get a better deal.
+-   **Option 2: Pass on Medtech:** Keep the adventure going and develop further.
 
+#### After Ditching Medtech:
 
-- Development Success: Determine if the three-dimensional software development is successful.
-Success: Successfully developed the 3D software.
-Failure: Failed to develop the 3D software.
-Funding Decision: If successful, decide the source of additional funding.
-SBIR Grant: Apply for the SBIR grant.
-Nugrowth Offer: Accept the Nugrowth Development offer.
-SBIR Outcome: The outcome of the SBIR grant application.
-Received: Grant is awarded.
-Not Received: Grant is not awarded.
-Market Success: The success of the product in the market.
-High Profit
-Medium Profit
-Low Profit
+-   **Event A: 3D Success (60% chance):** They totally nail the 3D software.
 
+-   **Event B: 3D No-Go (40% chance):** Uh-oh, 3D software doesn’t pan out.
 
+#### If 3D is a Hit:
+
+-   **Choice C1: Aim for SBIR Grant:** Going for the big government grant.
+
+-   **Choice C2: Say Yes to Nugrowth:** Dive into venture capital waters.
+
+#### If 3D Tanks:
+
+-   **Option D1: Throw in the Towel:** Call it quits, no more risks.
+
+-   **Option D2: SBIR or Bust:** Still aim for the SBIR grant but with the 2D tech.
+
+#### Chasing the SBIR Grant (After 3D Success):
+
+-   **Event E1: SBIR Slip-Up (30% chance):** Miss the grant, lose \$200K.
+
+-   **Event E2: SBIR Win (70% chance):** Score the grant and move forward.
+
+#### Chasing the SBIR Grant (After 3D Flop):
+
+-   **Event F1: SBIR Miss (80% chance):** No grant here either, down \$300K.
+
+-   **Event F2: SBIR Score (20% chance):** Miracle win with the 2D project.
+
+#### Rolling with SBIR Post-3D Triumph:
+
+-   **Outcome G1: Big Bucks (20% chance):** Rake in \$280K.
+
+-   **Outcome G2: Moderate Moola (40% chance):** Bag \$300K.
+
+-   **Outcome G3: Tough Times (40% chance):** Ouch, down \$200K.
+
+#### Taking the Nugrowth Plunge:
+
+-   **Outcome H1: Jackpot (20% chance):** Cash in \$180K.
+
+-   **Outcome H2: Decent Dough (40% chance):** Pocket \$400K.
+
+-   **Outcome H3: Bummer (40% chance):** Lose \$200K.
+
+#### After SBIR with 2D Tech:
+
+-   **Outcome I1: 2D Success (25% chance):** Net \$120K.
+
+-   **Outcome I2: 2D Downer (75% chance):** A loss of \$300K.
+    <br><br>
+
+### To begin with, I'll outline a summary of the story. This outline serves as a pivotal starting point for conducting our decision tree analysis. <br>
+
+### Now, let's proceed to develop the decision tree. This approach will provide decision-makers with a clear visual representation, allowing them to see the 'forest' as a whole, rather than getting lost in the details of each 'tree'
+
+<br><br>
 
 ```{r}
-library(data.tree)
+library(DiagrammeR)
+
+grViz("
+digraph BioImagingDecisionTree {
+
+  graph [rankdir = LR]
+
+  # Define node styles
+  node [fontname = Helvetica, shape = box]
+  edge [fontname = Helvetica]
+
+  # Define nodes
+  Start [label = 'Start']
+  Medtech [label = 'Take Medtech Offer - $150K']
+  NoMedtech [label = 'Decline Medtech Offer']
+  Success3D [label = '3D Success (60%)']
+  Fail3D [label = '3D Failure (40%)']
+  SBIR3D [label = 'Apply for SBIR (3D)']
+  Nugrowth [label = 'Accept Nugrowth']
+  Abandon [label = 'Abandon Project']
+  SBIR2D [label = 'Apply for SBIR (2D)']
+  SBIRSuccess3D [label = 'SBIR Success (3D)']
+  SBIRFail3D [label = 'SBIR Failure (3D)']
+  SBIRSuccess2D [label = 'SBIR Success (2D)']
+  SBIRFail2D [label = 'SBIR Failure (2D)']
+  HighProfitSBIR3D [label = 'High Profit SBIR (3D)']
+  MediumProfitSBIR3D [label = 'Medium Profit SBIR (3D)']
+  LowProfitSBIR3D [label = 'Low Profit SBIR (3D)']
+  HighProfitSBIR2D [label = 'High Profit SBIR (2D)']
+  LowProfitSBIR2D [label = 'Low Profit SBIR (2D)']
+  HighProfitNugrowth [label = 'High Profit Nugrowth']
+  MediumProfitNugrowth [label = 'Medium Profit Nugrowth']
+  LowProfitNugrowth [label = 'Low Profit Nugrowth']
+
+  # Define edges
+  Start -> Medtech
+  Start -> NoMedtech
+  NoMedtech -> Success3D
+  NoMedtech -> Fail3D
+  Success3D -> SBIR3D
+  Success3D -> Nugrowth
+  Fail3D -> Abandon
+  Fail3D -> SBIR2D
+  SBIR3D -> SBIRSuccess3D
+  SBIR3D -> SBIRFail3D
+  SBIR2D -> SBIRSuccess2D
+  SBIR2D -> SBIRFail2D
+  SBIRSuccess3D -> HighProfitSBIR3D
+  SBIRSuccess3D -> MediumProfitSBIR3D
+  SBIRSuccess3D -> LowProfitSBIR3D
+  SBIRSuccess2D -> HighProfitSBIR2D
+  SBIRSuccess2D -> LowProfitSBIR2D
+  Nugrowth -> HighProfitNugrowth
+  Nugrowth -> MediumProfitNugrowth
+  Nugrowth -> LowProfitNugrowth
+}
+", width = 1600, height = 800)
 
 ```
 
+### Now, this is the very basic of descriptive decision tree. The manger would be able to capture the whole picture out of this tree, and make a decision based on the tree. However, this is not the end of the story. We can add some more information to this tree, such as the probabilities and the payoffs. Let's work on it.
+
+<br><br>
+
 ```{r}
-# Define the tree structure
-bioImagingDecisionTree <- Node$new("Start")
-bioImagingDecisionTree$AddChild("Accept Medtech Offer")
-developmentNode <- bioImagingDecisionTree$AddChild("Decline Medtech Offer")
+grViz("
+digraph BioImagingDecisionTree {
 
-successNode <- developmentNode$AddChild("Development Success")
-failureNode <- developmentNode$AddChild("Development Failure")
+  graph [rankdir = LR]
+  
+  # Define node styles
+  node [fontname = Helvetica, shape = box]
+  edge [fontname = Helvetica]
 
-successNode$AddChild("Apply for SBIR Grant")
-nugrowthNode <- successNode$AddChild("Accept Nugrowth Offer")
+  # Define nodes with probabilities and payoffs
+  Start [label = 'Start']
+  Medtech [label = 'Medtech Offer: $150K (100%)']
+  NoMedtech [label = 'Decline Medtech Offer']
+  Success3D [label = '3D Success (60%)']
+  Fail3D [label = '3D Failure (40%)']
+  SBIR3D [label = 'Apply for SBIR (3D)']
+  Nugrowth [label = 'Accept Nugrowth']
+  Abandon [label = 'Abandon Project (0)']
+  SBIR2D [label = 'Apply for SBIR (2D)']
+  SBIRSuccess3D [label = 'SBIR Success (70%)']
+  SBIRFail3D [label = 'SBIR Failure (30%) - Loss $200K']
+  SBIRSuccess2D [label = 'SBIR Success (20%)']
+  SBIRFail2D [label = 'SBIR Failure (80%) - Loss $300K']
+  HighProfitSBIR3D [label = 'High Profit: $2.8M (20%)']
+  MediumProfitSBIR3D [label = 'Medium Profit: $300K (40%)']
+  LowProfitSBIR3D [label = 'Low Profit: Loss $200K (40%)']
+  HighProfitSBIR2D [label = 'High Profit: $1.2M (25%)']
+  LowProfitSBIR2D [label = 'Low Profit: Loss $300K (75%)']
+  HighProfitNugrowth [label = 'High Profit: $1.8M (20%)']
+  MediumProfitNugrowth [label = 'Medium Profit: $400K (40%)']
+  LowProfitNugrowth [label = 'Low Profit: Loss $200K (40%)']
 
-nugrowthNode$AddChild("High Profit")
-nugrowthNode$AddChild("Medium Profit")
-nugrowthNode$AddChild("Low Profit")
+  # Define edges
+  Start -> Medtech
+  Start -> NoMedtech
+  NoMedtech -> Success3D
+  NoMedtech -> Fail3D
+  Success3D -> SBIR3D
+  Success3D -> Nugrowth
+  Fail3D -> Abandon
+  Fail3D -> SBIR2D
+  SBIR3D -> SBIRSuccess3D
+  SBIR3D -> SBIRFail3D
+  SBIR2D -> SBIRSuccess2D
+  SBIR2D -> SBIRFail2D
+  SBIRSuccess3D -> HighProfitSBIR3D
+  SBIRSuccess3D -> MediumProfitSBIR3D
+  SBIRSuccess3D -> LowProfitSBIR3D
+  SBIRSuccess2D -> HighProfitSBIR2D
+  SBIRSuccess2D -> LowProfitSBIR2D
+  Nugrowth -> HighProfitNugrowth
+  Nugrowth -> MediumProfitNugrowth
+  Nugrowth -> LowProfitNugrowth
+}
+", width = 1600, height = 800)
 
-failureNode$AddChild("Abandon Project")
-failureNode$AddChild("Further Invest and Apply for SBIR Grant")
-
-# Print the structure
-print(bioImagingDecisionTree, "name")
-plot(bioImagingDecisionTree)
 
 
 ```
+
+### Now, we have the probabilities and the payoffs in the tree. The manager can make a decision based on the tree. However, the tree is still not complete. We can add some more information to the tree, such as the expected values and the expected utilities. Let's work on it.
+
+```{r}
+# Probabilities and Payoffs
+p_success_3D <- 0.60
+p_fail_3D <- 0.40
+p_SBIR_success_3D <- 0.70
+p_SBIR_fail_3D <- 0.30
+p_SBIR_success_2D <- 0.20
+p_SBIR_fail_2D <- 0.80
+
+payoff_medtech <- 150000
+payoff_SBIR_fail_3D <- -200000
+payoff_SBIR_fail_2D <- -300000
+payoff_high_profit_3D <- 2800000
+payoff_medium_profit_3D <- 300000
+payoff_low_profit_3D <- -200000
+payoff_high_profit_2D <- 1200000
+payoff_low_profit_2D <- -300000
+payoff_high_profit_Nugrowth <- 1800000
+payoff_medium_profit_Nugrowth <- 400000
+payoff_low_profit_Nugrowth <- -200000
+
+# Calculating Expected Values
+EV_medtech <- payoff_medtech
+EV_3D_success <- p_SBIR_success_3D * (payoff_high_profit_3D * 0.20 + payoff_medium_profit_3D * 0.40 + payoff_low_profit_3D * 0.40) +
+                 p_SBIR_fail_3D * payoff_SBIR_fail_3D
+EV_3D_fail <- p_SBIR_success_2D * (payoff_high_profit_2D * 0.25 + payoff_low_profit_2D * 0.75) +
+              p_SBIR_fail_2D * payoff_SBIR_fail_2D
+EV_Nugrowth <- payoff_high_profit_Nugrowth * 0.20 + payoff_medium_profit_Nugrowth * 0.40 + payoff_low_profit_Nugrowth * 0.40
+
+# Printing Expected Values
+print(paste("Expected Value if Medtech Offer is Accepted: $", EV_medtech))
+print(paste("Expected Value if 3D is a Success: $", EV_3D_success))
+print(paste("Expected Value if 3D Fails: $", EV_3D_fail))
+print(paste("Expected Value if Nugrowth is Chosen: $", EV_Nugrowth))
+
+
+
+```
+
+<br><br>
+
+### I'm using some probabilities and potential payoffs for each scenario. <br> It's a bit like weighing the odds and what they could win or lose in each case.<br><br>
+
+### **Here's What I'm Considering:**
+
+-   **Odds of 3D Development Going Well or Not:** 60% chance that the 3D project will be a success and a 40% chance it might not work out.
+
+-   **Chances with the SBIR Grant:** They are to get a government grant (the SBIR) if they go with either the 3D or the 2D project.
+    It's more likely to succeed with the 3D project.
+
+-   **Money Matters:** They're looking at different money outcomes like getting \$150,000 from Medtech, what they might lose if the SBIR grant doesn't come through, and various profits (or losses) they could see from the 3D, 2D, and Nugrowth options.
+
+### **Expected Values:**
+
+#### I then do some math to figure out what I might expect to gain (or lose) on average from each decision. It's like looking at all possible outcomes, thinking about how likely each is, and then coming up with an average outcome.
+
+1.  **Taking Medtech's Offer:** This one's a no-brainer; if they take their offer, they get \$150,000.
+
+2.  **If 3D Works Out:** Here, I'm mixing the good and not-so-good financial outcomes based on whether they get the SBIR grant or not.
+
+3.  **If 3D Doesn't Pan Out:** Doing similar math for the 2D project, but the odds aren't as great.
+
+4.  **Going with Nugrowth:** Consider different profit scenarios with Nugrowth and see what the average outcome might look like.
+
+### **Making Sense of It All:**
+
+-   A high expected value means the decision could lead to good financial outcomes when you consider all the different ways things could go.
+
+-   A lower expected value points to a decision being riskier or potentially less rewarding.
+
+#### By figuring out these expected values, we're essentially trying to get a clearer picture of what each decision might bring financially. It helps us make smarter choices by understanding the risks and possible rewards involved.
+
+#### 
+
+#### Looking at the results below;
+
+```         
+[1] "Expected Value if Medtech Offer is Accepted: $ 150000"
+[1] "Expected Value if 3D is a Success: $ 360000"
+[1] "Expected Value if 3D Fails: $ -225000"
+[1] "Expected Value if Nugrowth is Chosen: $ 440000"
+```
+
+Going with Nugrowth gives the most EV (Expected Value) in this scenario, meaning, you would [reject Medtech's \$150,000 offer]{style="color:red"}, and if 3D model developing is successful, you would [go with Nugrowth]{style="color:red"}.
+
+<br><br>
+
+```{r}
+grViz("
+digraph BioImagingDecisionTree {
+
+  graph [rankdir = LR]
+  
+  # Define node styles
+  node [fontname = Helvetica, shape = box]
+  edge [fontname = Helvetica]
+
+  # Define nodes with probabilities and payoffs
+  Start [label = 'Start']
+  Medtech [label = 'Medtech Offer: $150K (100%)']
+  NoMedtech [label = 'Decline Medtech Offer']
+  Success3D [label = '3D Success (60%)']
+  Fail3D [label = '3D Failure (40%)']
+  SBIR3D [label = 'Apply for SBIR (3D)']
+  Nugrowth [label = 'Accept Nugrowth']
+  Abandon [label = 'Abandon Project (0)']
+  SBIR2D [label = 'Apply for SBIR (2D)']
+  SBIRSuccess3D [label = 'SBIR Success (70%)']
+  SBIRFail3D [label = 'SBIR Failure (30%) - Loss $200K']
+  SBIRSuccess2D [label = 'SBIR Success (20%)']
+  SBIRFail2D [label = 'SBIR Failure (80%) - Loss $300K']
+  HighProfitSBIR3D [label = 'High Profit: $2.8M (20%)']
+  MediumProfitSBIR3D [label = 'Medium Profit: $300K (40%)']
+  LowProfitSBIR3D [label = 'Low Profit: Loss $200K (40%)']
+  HighProfitSBIR2D [label = 'High Profit: $1.2M (25%)']
+  LowProfitSBIR2D [label = 'Low Profit: Loss $300K (75%)']
+  HighProfitNugrowth [label = 'High Profit: $1.8M (20%)', shape = ellipse]
+  MediumProfitNugrowth [label = 'Medium Profit: $400K (40%)', shape = ellipse]
+  LowProfitNugrowth [label = 'Low Profit: Loss $200K (40%)', shape = ellipse]
+
+  # Define edges
+  Start -> Medtech
+  Start -> NoMedtech [color=red, penwidth=2.0] 
+  NoMedtech -> Success3D [color=red, penwidth=2.0] 
+  NoMedtech -> Fail3D
+  Success3D -> SBIR3D
+  Success3D -> Nugrowth [color=red, penwidth=2.0] 
+  Fail3D -> Abandon
+  Fail3D -> SBIR2D
+  SBIR3D -> SBIRSuccess3D
+  SBIR3D -> SBIRFail3D
+  SBIR2D -> SBIRSuccess2D
+  SBIR2D -> SBIRFail2D
+  SBIRSuccess3D -> HighProfitSBIR3D
+  SBIRSuccess3D -> MediumProfitSBIR3D
+  SBIRSuccess3D -> LowProfitSBIR3D
+  SBIRSuccess2D -> HighProfitSBIR2D
+  SBIRSuccess2D -> LowProfitSBIR2D
+  Nugrowth -> HighProfitNugrowth [color=green, penwidth=2.0] 
+  Nugrowth -> MediumProfitNugrowth [color=green, penwidth=2.0] 
+  Nugrowth -> LowProfitNugrowth [color=green, penwidth=2.0] 
+}
+", width = 1600, height = 800)
+
+
+
+
+
+```
+
+### <br>But what happens if the development of the 3D Model falls through?<br>
+
+### In such a scenario, it becomes crucial to identify the most advantageous course of action to take.<br>
+
+```{r}
+payoff_abandon <- -200000
+
+
+# Calculating Expected Value for applying for SBIR with 2D technology
+EV_SBIR_2D <- p_SBIR_success_2D * (payoff_high_profit_2D * 0.25 + payoff_low_profit_2D * 0.75) +
+              p_SBIR_fail_2D * payoff_SBIR_fail_2D
+
+# Print Expected Values
+formatted_EV_abandon <- format(payoff_abandon, scientific = FALSE)
+formatted_EV_SBIR_2D <- format(EV_SBIR_2D, scientific = FALSE)
+
+print(paste("Expected Value if Abandoning the Project after Failing 3D: $", formatted_EV_abandon))
+print(paste("Expected Value if Applying for SBIR with 2D Technology: $", formatted_EV_SBIR_2D))
+
+```
+
+### If the team fails to develop the 3D Model, opting to apply for the SBIR grant turns out to be the less favorable choice. This is because its expected value stands at a loss of -\$225,000, which is a greater loss compared to simply abandoning the project, which has an expected value of -\$200,000
+
+<br><br>
+
+### Now, let's finalize the decision tree by applying the expected value (EV) calculations based on the probabilities we've determined. What follows is an illustration where I'll highlight the paths, showcasing our findings from these calculations.
+
+```{r}
+grViz("
+digraph BioImagingDecisionTree {
+
+  graph [rankdir = LR]
+  
+  # Define node styles
+  node [fontname = Helvetica, shape = box]
+  edge [fontname = Helvetica, color=lightgray] 
+
+  # Define nodes with probabilities and payoffs
+  Start [label = 'Start']
+  Medtech [label = 'Medtech Offer: $150K (100%)']
+  NoMedtech [label = 'Decline Medtech Offer']
+  Success3D [label = '3D Success (60%)']
+  Fail3D [label = '3D Failure (40%)']
+  SBIR3D [label = 'Apply for SBIR (3D)']
+  Nugrowth [label = 'Accept Nugrowth']
+  Abandon [label = 'Abandon Project (0)']
+  SBIR2D [label = 'Apply for SBIR (2D)']
+  SBIRSuccess3D [label = 'SBIR Success (70%)']
+  SBIRFail3D [label = 'SBIR Failure (30%) - Loss $200K']
+  SBIRSuccess2D [label = 'SBIR Success (20%)']
+  SBIRFail2D [label = 'SBIR Failure (80%) - Loss $300K']
+  HighProfitSBIR3D [label = 'High Profit: $2.8M (20%)']
+  MediumProfitSBIR3D [label = 'Medium Profit: $300K (40%)']
+  LowProfitSBIR3D [label = 'Low Profit: Loss $200K (40%)']
+  HighProfitSBIR2D [label = 'High Profit: $1.2M (25%)']
+  LowProfitSBIR2D [label = 'Low Profit: Loss $300K (75%)']
+  HighProfitNugrowth [label = 'High Profit: $1.8M (20%)', shape = ellipse]
+  MediumProfitNugrowth [label = 'Medium Profit: $400K (40%)', shape = ellipse]
+  LowProfitNugrowth [label = 'Low Profit: Loss $200K (40%)', shape = ellipse]
+
+  # Define edges with specific colors for highlighted paths
+  Start -> Medtech
+  Start -> NoMedtech [color=red, penwidth=2.0] 
+  NoMedtech -> Success3D [color=red, penwidth=2.0] 
+  NoMedtech -> Fail3D [color=blue, penwidth=2.0] 
+  Success3D -> SBIR3D [color=lightgray, penwidth=1.0]
+  Success3D -> Nugrowth [color=red, penwidth=2.0] 
+  Fail3D -> Abandon [color=blue, penwidth=2.0] 
+  Fail3D -> SBIR2D [color=lightgray, penwidth=1.0]
+  SBIR3D -> SBIRSuccess3D [color=lightgray, penwidth=1.0]
+  SBIR3D -> SBIRFail3D [color=lightgray, penwidth=1.0]
+  SBIR2D -> SBIRSuccess2D [color=lightgray, penwidth=1.0]
+  SBIR2D -> SBIRFail2D [color=lightgray, penwidth=1.0]
+  SBIRSuccess3D -> HighProfitSBIR3D [color=lightgray, penwidth=1.0]
+  SBIRSuccess3D -> MediumProfitSBIR3D [color=lightgray, penwidth=1.0]
+  SBIRSuccess3D -> LowProfitSBIR3D [color=lightgray, penwidth=1.0]
+  SBIRSuccess2D -> HighProfitSBIR2D [color=lightgray, penwidth=1.0]
+  SBIRSuccess2D -> LowProfitSBIR2D [color=lightgray, penwidth=1.0]
+  Nugrowth -> HighProfitNugrowth [color=green, penwidth=2.0] 
+  Nugrowth -> MediumProfitNugrowth [color=green, penwidth=2.0] 
+  Nugrowth -> LowProfitNugrowth [color=green, penwidth=2.0] 
+}
+", width = 1600, height = 800)
+
+
+```
+
+## <br>Conclusion
+
+### In this Bio-Imaging's strategic choices, we've navigated a complex landscape of options and outcomes using decision tree analysis. 
+
+### Here's what we found out:
+
+#### **- [Embracing Nugrowth]{style="color:red"}** If the 3D model is a hit, the smart move seems to be teaming up with Nugrowth. The expected value (EV) of this choice outshines the rest, promising the highest potential financial gain. It's a path lined with opportunity, albeit not without its risks.
+
+#### **- The 3D Fails:** If the 3D model developing fails, abandoning the project is a less painful financial hit compared to chasing the SBIR grant with 2D technology.
+
+#### **- The Medtech Offer:** While the immediate cash injection from Medtech is tempting, my analysis suggests that playing the long game might be more fruitful.
+
+### Our decision tree, enhanced with probabilities, payoffs, expected values, and even color-coded for clarity, serves as a roadmap. It doesn't just tell us which path to choose; it shows us the landscape of possibilities, guiding Bio-Imaging's strategic decisions with a blend of data-driven insight and cautious optimism.
+
+### In conclusion, Bio-Imaging stands at a crossroads, with each path leading to distinct futures. The choice isn't just about numbers; it's about weighing certainty against ambition, immediate gains against potential growth. It's a nuanced decision, and thanks to our analysis, it's one that can be made with both eyes wide open.
+
+<br><br>
 
 ------------------------------------------------------------------------
 
