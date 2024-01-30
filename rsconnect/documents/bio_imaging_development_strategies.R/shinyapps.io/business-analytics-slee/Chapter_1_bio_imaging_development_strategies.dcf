@@ -5,8 +5,9 @@ account: business-analytics-slee
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 10968350
-bundleId: 8169749
+bundleId: 8197400
 url: https://business-analytics-slee.shinyapps.io/Chapter_1_bio_imaging_development_strategies/
 version: 1
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: 1st tree.png|2nd tree.png|analysis_bio_imaging_development_strategies.Rmd|bio_imaging_development_strategies.Rmd|Case Description.docx
