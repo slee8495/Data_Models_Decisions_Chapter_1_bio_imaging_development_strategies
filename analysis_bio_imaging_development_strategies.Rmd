@@ -33,6 +33,52 @@ font-size: 1.2em;
 
 ------------------------------------------------------------------------
 
+# **Case Summary**
+
+<br><br>
+
+**Note:** *This summary offers a creatively rephrased perspective of the
+original case study. It aims to provide an engaging and understandable
+narrative.*
+
+# **Bio-Imaging's Development Dilemma: Choosing the Path to Innovation** <br><br>
+
+<br>
+
+**Part 1**<br>
+Bio-Imaging Inc. finds itself at a pivotal point with their advanced 3D brain imaging technology. Medtech Corporation steps in, offering a solid $150K for their software. It's a tempting offer that guarantees immediate financial gain. <br><br>
+
+**Part 2**<br>
+If their product is a success, they're faced with new options. One is to apply for the SBIR grant, which could bring in $300,000 without diluting their ownership. The other is to accept a $1 million offer from Nugrowth Development, but this would mean parting with 80% of future profits. The financial outcomes vary significantly: the SBIR route could lead to a high profit of $2.8 million, a medium gain of $300K, or a potential loss of $200K. The Nugrowth deal offers its own set of possibilities: a high profit of $1.8 million, a comfortable $400K, or a loss of $200K.<br><br>
+
+**Part 3**<br>
+If their 3D project not succeeded, Bio-Imaging would have had to make a tough call between abandoning their project or pivoting to their 2D technology and hoping for a SBIR grant. This alternate route comes with a 20% chance of success, potentially leading to a high profit of $1.2 million, or a loss of $300K.<br><br>
+
+**Part 4**<br>
+Each decision point for Bio-Imaging is a complex balance of potential high, medium, and low profits against significant risks. Their financial path is uncertain yet full of potential, with each choice critically shaping their role in the competitive medical technology market.
+<br><br>
+
+**Part 5**<br>
+Bio-Imaging's journey is akin to navigating the challenging waters of business innovation. Their story is one of making calculated, strategic decisions in the dynamic and high-stakes environment of medical technology. Each decision not only impacts their financial standing but also reflects their commitment to pushing the boundaries of medical innovation.
+<br><br>
+
+
+**Part 6**<br>
+***Medtech:***
+<br>
+Medtech Corporation offers a straightforward deal: $150K for Bio-Imaging's software. It's a clear path to immediate financial gain but at the cost of relinquishing future opportunities and advancements in their technology.
+<br><br>
+***SBIR (Small Business Innovative Research):***
+<br>
+The SBIR grant represents a lucrative opportunity for funding from the government. If Bio-Imaging secures this grant, they stand to gain $300,000 with the advantage of retaining full control over their business. However, the odds of winning this grant are higher with their 3D software success (70%) compared to their 2D version (20%).
+<br><br>
+***Nugrowth:***
+<br>
+Nugrowth Development offers an attractive proposition with a significant upfront investment of $1 million. This option could rapidly accelerate Bio-Imaging's development and market presence. However, it comes with the substantial trade-off of sharing 80% of their future profits, a decision that could have long-term financial implications.
+<br><br>
+
+
+
 ### In selecting a programming language for constructing a decision tree, I choose R because of its robust capabilities in statistical analysis and its widespread use in the field of bioinformatics.
 
 #### <br> [I will use DiagrammeR package to construct the decision tree]{style="color:orange"}
